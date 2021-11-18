@@ -1,0 +1,15 @@
+
+.box
+  = form_with model: @post, url: users_post_path, method: :put, local: true do |f|
+    .field
+      label.label Title
+      .control
+        = f.text_field :title, class: 'input'
+    .field
+      label.label Message
+      .control
+        = f.text_area :message, class: 'textarea'
+    .field
+      .control.is-flex.level-right
+          = link_to 'delete', users_post_path(@post), method: :delete, class: 'button is-danger mr-3'
+          = f.submit 'update', class: 'button is-primary'

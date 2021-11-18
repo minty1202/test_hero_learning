@@ -1,0 +1,32 @@
+nav.navbar.is-white.topNav
+  .container
+    .navbar-brand
+      .navbar-burger.burger data-target="topNav" 
+        span
+        span
+        span
+    #topNav.navbar-menu
+      .navbar-start
+        = link_to 'Home', root_path, class: 'navbar-item'
+      .navbar-end
+        .navbar-item
+          .field.is-grouped
+            - if user_signed_in?
+              p.control
+                = link_to destroy_user_session_path, method: :delete, class: 'button is-small is-outlined' do
+                  span.icon
+                    i.fas.fa-sign-out-alt
+                  span
+                    | Logout
+            - else
+              p.control
+                = link_to new_user_registration_path, class: 'button is-small' do
+                  span.icon
+                    i.fa.fa-user-plus
+                  span
+                    | Register
+              p.control
+                = link_to user_session_path, class: 'button is-small is-info is-outlined' do
+                  span.icon
+                    i.fa.fa-user
+                  span Login

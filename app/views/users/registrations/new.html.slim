@@ -1,0 +1,42 @@
+/ h2 Sign up
+/ = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+/   = render "users/shared/error_messages", resource: resource
+/   .field
+/     = f.label :email
+/     br/
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .field
+/     = f.label :password
+/     - if @minimum_password_length
+/       em
+/         | (#{@minimum_password_length} characters minimum)
+/     br/
+/     = f.password_field :password, autocomplete: "new-password"
+/   .field
+/     = f.label :password_confirmation
+/     br/
+/     = f.password_field :password_confirmation, autocomplete: "new-password"
+/   .actions
+/     = f.submit "Sign up"
+
+section.hero.has-background-light.is-fullheight
+  .hero-body
+    .container.has-text-centered
+      .column.is-4.is-offset-4
+        h3.title.has-text-black Sign up
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          .box
+            = render "users/shared/error_messages", resource: resource
+            form
+              .field
+                .control
+                  = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input is-large', placeholder:"Email"
+              .field
+                .control
+                  = f.password_field :password, autocomplete: "new-password", class: 'input is-large', placeholder: "Password"
+              .field
+                .control
+                  = f.password_field :password_confirmation, autocomplete: "new-password", class: 'input is-large', placeholder: "Password confirmation"
+              = f.submit "Sign up", class: 'button is-block is-info is-large is-fullwidth'
+          p.has-text-grey.mt-3
+            = render "users/shared/links"

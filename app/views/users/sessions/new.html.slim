@@ -1,0 +1,23 @@
+section.hero.has-background-light.is-fullheight
+  .hero-body
+    .container.has-text-centered
+      .column.is-4.is-offset-4
+        h3.title.has-text-black Login
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .box
+            form
+              .field
+                .control
+                  = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input is-large', placeholder: "Email"
+              .field
+                .control
+                  = f.password_field :password, autocomplete: "current-password", class: 'input is-large', placeholder: "Password"
+              .field
+                label.checkbox
+                  - if devise_mapping.rememberable?
+                    .field
+                      = f.check_box :remember_me, class: 'mr-1'
+                      = f.label :remember_me
+              = f.submit "Log in", class: 'button is-block is-info is-large is-fullwidth'
+          p.has-text-grey.mt-3
+            = render "users/shared/links"

@@ -1,0 +1,53 @@
+section.container
+  .hero.is-info.welcome.is-small style='border-radius: 10px;'
+    .hero-body
+      .container
+        h1.title
+          = "Hello #{current_user.email}!!"
+  .info-tiles.mt-3
+    .tile.is-ancestor.has-text-centered
+      .tile.is-parent
+        article.tile.is-child.box
+          p.title = current_user.posts.count
+          p.subtitle Posts
+      .tile.is-parent
+        article.tile.is-child.box
+          p.title 59
+          p.subtitle Likes
+  .columns
+    .column.is-6
+      .box
+        = form_with model: current_user.posts.new, url: users_posts_path, local: true do |f|
+          .field
+            label.label Title
+            .control
+              = f.text_field :title, class: 'input'
+          .field
+            label.label Message
+            .control
+              = f.text_area :message, class: 'textarea'
+          .field
+            .control
+                = f.submit 'Submit', class: 'button is-link is-fullwidth'
+
+    .column.is-6
+      .card.events-card.box
+        header
+          p.card-header-title
+            | Your Posts
+        .card-table
+          .content
+            table.table.is-fullwidth.is-striped
+              tbody
+                tr
+                  th width="15%" Title
+                  th message
+                  th.level-right.mr-1 link
+                - @posts.each do |post|
+                  tr
+                    td.has-text-weight-bold width="15%" 
+                      = post.title
+                    td
+                      = post.message
+                    td.level-right
+                      = link_to 'detail', users_post_path(post), class: 'button is-small is-primary'
