@@ -1,0 +1,27 @@
+section.has-background-light.p-4.view-hight
+  .container
+    .columns
+      .column
+        .box.content.p-3
+          - @posts.each do |post|
+            article.post.mt-2
+              h4 = post.title
+              .media
+                .media-content
+                  .content
+                    p
+                      = post.message
+                .media-right
+                  span.has-text-grey-light
+                    = post.user.email
+
+footer.footer.has-background-grey-dark	
+  .container
+    .content.has-text-centered
+      .columns.is-mobile.is-centered
+        .field.is-grouped.is-grouped-multiline
+          .control
+            .tags.has-addons
+              a.tag.is-link Bulma Templates
+              span.tag.is-light Daniel Supernault
+/ script async="" src="../js/bulma.js" type="text/javascript" 
